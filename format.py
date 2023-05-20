@@ -33,7 +33,11 @@ def main():
         img_name = id2name[str(img_id)]
         if img_name not in output:
             output[img_name] = {'boxes': [], 'labels': [], 'scores': []}
-        output[img_name]['boxes'].append(img['bbox'][:4])
+        # convert bbox from [x, y, w, h] to [xmin, ymin, xmax, ymax]
+        bbox = img['bbox']
+        bbox[2] += bbox[0]
+        bbox[3] += bbox[1]
+        output[img_name]['boxes'].append(bbox)
         output[img_name]['labels'].append(img['category_id'])
         output[img_name]['scores'].append(img['score'])
     with open(args.output, 'w') as f:
