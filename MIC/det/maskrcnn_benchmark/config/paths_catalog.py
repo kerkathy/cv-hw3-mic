@@ -105,10 +105,9 @@ class DatasetCatalog(object):
             "img_dir": "/home/guest/r11944026/cv/hw3/data/hw3_dataset",
             "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/val.coco.json"
         },
- 
         "my_cityscapes_test_no_label": {
-            "img_dir": "/home/guest/r11944026/cv/hw3/data/hw3_dataset",
-            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/val.coco.json" # fake... should modify
+            "img_dir": ".",
+            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/test.json" 
         },
         "cityscapes_fine_instanceonly_seg_train_cocostyle": {
             "img_dir": "cityscapes/leftImg8bit",
