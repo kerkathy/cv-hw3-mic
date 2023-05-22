@@ -3,9 +3,13 @@ Forked from MIC. Unsupervised domain adaptation using mic repo.
 
 ## Inference
 By running `hw3_inference.sh` you can successfully finish the below workflow and generate a output.json.
+
 (1) generate `test.json` which is a dummy file listing all test images.
+
 (2) run the test_net.py to generate predictions (bbox coordinate `[x, y, w, h]`)
+
 (3) convert `bbox.json` to the format which matches the requirement of this homework (bbox coordinate `[xmin, ymin, xmax, ymax]`).
+
 Note: all the path in `hw3_inference.sh` should be carefully modified before running.
 
 ## Some Notes for Training

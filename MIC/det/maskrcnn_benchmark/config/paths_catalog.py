@@ -98,9 +98,9 @@ class DatasetCatalog(object):
         },
         "my_foggy_cityscapes_train": {
             "img_dir": "/home/guest/r11944026/cv/hw3/data/hw3_dataset",
-            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/org/train.coco.json" # fake... should modify...
+            # "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/train_fog.json"
+            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/org/train.coco.json"
         },
-
         "my_cityscapes_test": {
             "img_dir": "/home/guest/r11944026/cv/hw3/data/hw3_dataset",
             "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/val.coco.json"

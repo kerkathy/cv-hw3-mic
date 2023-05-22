@@ -18,8 +18,10 @@ from tqdm import tqdm
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', type=str, required=True)
+    parser.add_argument('--subdir', type=str, required=True, help='Name of the subdirectory containing images')
     parser.add_argument('--output_json', type=str, required=True, help='Name of output json file')
     parser.add_argument('--output_id2name', type=str, required=True, help='Name of output id2name json file')
+    parser.add_argument('--path_subdir', action='store_true', help='Use the path of the subdirectory as the image name')
     args = parser.parse_args()
     return args
 
@@ -68,7 +70,7 @@ def main():
 
     # Get all images in the directory
     image_paths = []
-    subdir = "fog/public_test"
+    subdir = args.subdir
     test_dir = os.path.join(args.dataset, subdir)
     for root, _, files in os.walk(test_dir):
         for file in files:
@@ -82,7 +84,7 @@ def main():
             'id': image_id,
             'width': 2048,
             'height': 1024,
-            'file_name': os.path.abspath(image_path),
+            'file_name': os.path.join(subdir, os.path.basename(image_path)) if args.path_subdir else os.path.abspath(image_path),
         }
         test_json['images'].append(image)
         id2names[image_id] = os.path.join(subdir, os.path.basename(image_path))
