@@ -1,11 +1,16 @@
 # generated output
 *.json
 *.pth
+*.png
+*.pt
 inference
 last_checkpoint
 log
 results
+models
 
 # weird thingy
 .nfs*
 *.swp
+__pycache__/
+*.pyc

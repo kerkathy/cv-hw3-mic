@@ -1,0 +1,13 @@
+path: /home/guest/r11944026/cv/hw3/data/hw3_dataset/
+train: images/train
+val: images/val
+
+names:
+        0: person
+        1: car
+        2: truck
+        3: bus
+        4: rider
+        5: motorcycle
+        6: bicycle
+        7: train

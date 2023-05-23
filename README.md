@@ -3,11 +3,12 @@ Forked from MIC. Unsupervised domain adaptation using mic repo.
 
 ## Environment
 Please follow the instruction in [INSTALL.md](MIC/det/INSTALL.md) to install and use this repo.
-For installation problems, please consult issues in maskrcnn-benchmark .
+For installation problems, please consult issues in [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark).
 
 ## Inference
 ```
-./hw3_inference.sh
+./hw3_inference.sh /path/to/dataset /path/to/output.json <checkpoint_num>
+# e.g., ./hw3_inference.sh ../hw3/data/hw3_dataset output_test.json 1 
 ```
 
 By running `hw3_inference.sh` you can successfully finish the below workflow and generate a output.json.
@@ -20,7 +21,30 @@ By running `hw3_inference.sh` you can successfully finish the below workflow and
 
 Note: all the path in `hw3_inference.sh` should be carefully modified before running.
 
-## Some Notes for Training
+## Visualize MIC Results
+Adjust the model number in `run_all_eval.sh` according to the model weights you have.
+```
+./run_all_eval.sh /path/to/models
+# e.g., ./run_all_eval.sh models/model_0523 
+```
+
+## YOLOv5 on source model
+`cd yolov5` to move to the correct working dir.
+
+### Training
+```
+python create_yolo_labels_for_single_file.py ~/cv/hw3/data/hw3_dataset/org/train.coco.json ~/cv/hw3/data/hw3_dataset/labels
+python create_yolo_labels_for_single_file.py ~/cv/hw3/data/hw3_dataset/org/val.coco.json ~/cv/hw3/data/hw3_dataset/labels
+python train.py --data cityscape.yaml
+```
+
+### Evaluation
+```
+python create_yolo_labels_for_single_file.py ~/cv/hw3/data/hw3_dataset/fog/val.coco.json ~/cv/hw3/data/hw3_dataset/fog/labels
+python val.py --weights runs/train/exp16/weights/best.pt --data foggy_cityscape.yaml --img 1024
+```
+
+## Some Notes for Training MIC
 `MIC/det/maskrcnn_benchmark/config/paths_catalog.py`: where the configuration key-value pairs are set.
 `MIC/det/configs/da_faster_rcnn/<some_yaml_file>`: the actual configuration file
 * when `train_net.py` is run, `DATASETS/SOURCE_TRAIN` and `DATASETS/TARGET_TRAIN` will be fetched.
@@ -31,7 +55,7 @@ Note: all the path in `hw3_inference.sh` should be carefully modified before run
 A json file which contains
 * keys: 'categories', 'images', 'annotations'
 * inside 'categories': a list of dict, where each element is `{'id': 1, 'name': 'person'}`, mapping id to class names.
-* inside 'images': a list of dict, where each dict is sth like `{'id': 0, 'width': 2048, 'height': 1024, 'file_name': 'org/train/0000.png'}`, idicating information of each file.
+* inside 'images': a list of dict, where each dict is sth like `{'id': 0, 'width': 2048, 'height': 1024, 'file_name': 'org/train/0000.png'}`, indicating information of each file.
 * inside 'annotations': a list of dict, where each dict is sth like `{'id': 0, 'image_id': 905, 'category_id': 1, 'iscrowd': 0, 'area': 3212, 'bbox': [1251, 362, 49, 113]}`, indicating information of each bbox.
 
 Size of 
