@@ -4,6 +4,8 @@
 inference
 last_checkpoint
 log
+results
 
 # weird thingy
 .nfs*
+*.swp

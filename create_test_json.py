@@ -4,15 +4,14 @@ The format should look like val.coco.json
 where the images are in the directory specified by command line argument
 
 also create a id2name.json file for inferencing
+
+Usage:
+    python create_test_json.py --dataset /path/to/dataset --subdir fog/public_test --output_json test.json --output_id2name id2name.json [--path_subdir --dummy_bbox]
 """
 
 import argparse
 import json
 import os
-import random
-import shutil
-import sys
-
 from tqdm import tqdm
 
 def parse_args():
@@ -21,7 +20,8 @@ def parse_args():
     parser.add_argument('--subdir', type=str, required=True, help='Name of the subdirectory containing images')
     parser.add_argument('--output_json', type=str, required=True, help='Name of output json file')
     parser.add_argument('--output_id2name', type=str, required=True, help='Name of output id2name json file')
-    parser.add_argument('--path_subdir', action='store_true', help='Use the path of the subdirectory as the image name')
+    parser.add_argument('--subdir_as_path', action='store_true', help='Use the path of the subdirectory as the image name')
+    parser.add_argument('--dummy_bbox', action='store_true', help='Create dummy bounding boxes for each image')
     args = parser.parse_args()
     return args
 
@@ -84,9 +84,19 @@ def main():
             'id': image_id,
             'width': 2048,
             'height': 1024,
-            'file_name': os.path.join(subdir, os.path.basename(image_path)) if args.path_subdir else os.path.abspath(image_path),
+            'file_name': os.path.join(subdir, os.path.basename(image_path)) if args.subdir_as_path else os.path.abspath(image_path),
         }
         test_json['images'].append(image)
+        if args.dummy_bbox:
+            annotation = {
+                'id': image_id,
+                'image_id': image_id,
+                'category_id': 1,
+                'iscrowd': 0,
+                'area': 3212,
+                'bbox': [1251, 362, 49, 113], # fake but can't be all 0
+            }
+            test_json['annotations'].append(annotation)
         id2names[image_id] = os.path.join(subdir, os.path.basename(image_path))
 
     # Write the json file with indent=4
@@ -94,7 +104,7 @@ def main():
         json.dump(test_json, f, indent=4)
         print('Created {}'.format(args.output_json))
 
-    # Write the id2name json file with indent=2
+    # Write the id2name json file with indent=4
     with open(args.output_id2name, 'w') as f:
         json.dump(id2names, f, indent=4)
         print('Created {}'.format(args.output_id2name))

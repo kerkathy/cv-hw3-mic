@@ -3,10 +3,26 @@
 
 import os
 
-
 class DatasetCatalog(object):
     DATA_DIR = "datasets"
     DATASETS = {
+        "my_cityscapes_train": {
+            "img_dir": "/home/guest/r11944026/cv/hw3/data/hw3_dataset",
+            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/org/train.coco.json"
+        },
+        "my_foggy_cityscapes_train": {
+            "img_dir": "/home/guest/r11944026/cv/hw3/data/hw3_dataset",
+            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/train_fog.json"
+        },
+        "my_cityscapes_test": {
+            "img_dir": "/home/guest/r11944026/cv/hw3/data/hw3_dataset",
+            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/val.coco.json"
+        },
+        "my_cityscapes_test_no_label": {
+            "img_dir": ".",
+            # "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/test.json" 
+            "ann_file": "./test.json" 
+        },
         "coco_2017_train": {
             "img_dir": "coco/train2017",
             "ann_file": "coco/annotations/instances_train2017.json"
@@ -91,23 +107,6 @@ class DatasetCatalog(object):
             "data_dir": "voc/VOC2012",
             "split": "test"
             # PASCAL VOC2012 doesn't made the test annotations available, so there's no json annotation
-        },
-        "my_cityscapes_train": {
-            "img_dir": "/home/guest/r11944026/cv/hw3/data/hw3_dataset",
-            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/org/train.coco.json"
-        },
-        "my_foggy_cityscapes_train": {
-            "img_dir": "/home/guest/r11944026/cv/hw3/data/hw3_dataset",
-            # "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/train_fog.json"
-            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/org/train.coco.json"
-        },
-        "my_cityscapes_test": {
-            "img_dir": "/home/guest/r11944026/cv/hw3/data/hw3_dataset",
-            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/val.coco.json"
-        },
-        "my_cityscapes_test_no_label": {
-            "img_dir": ".",
-            "ann_file": "/home/guest/r11944026/cv/hw3/data/hw3_dataset/fog/test.json" 
         },
         "cityscapes_fine_instanceonly_seg_train_cocostyle": {
             "img_dir": "cityscapes/leftImg8bit",

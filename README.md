@@ -1,12 +1,20 @@
 # cv-hw3-mic
 Forked from MIC. Unsupervised domain adaptation using mic repo.
 
+## Environment
+Please follow the instruction in [INSTALL.md](MIC/det/INSTALL.md) to install and use this repo.
+For installation problems, please consult issues in maskrcnn-benchmark .
+
 ## Inference
+```
+./hw3_inference.sh
+```
+
 By running `hw3_inference.sh` you can successfully finish the below workflow and generate a output.json.
 
 (1) generate `test.json` which is a dummy file listing all test images.
 
-(2) run the test_net.py to generate predictions (bbox coordinate `[x, y, w, h]`)
+(2) run `test_net.py` to generate predictions (bbox coordinate `[x, y, w, h]`)
 
 (3) convert `bbox.json` to the format which matches the requirement of this homework (bbox coordinate `[xmin, ymin, xmax, ymax]`).
 
