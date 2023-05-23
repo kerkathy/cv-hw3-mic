@@ -1,6 +1,9 @@
 # generated output
 *.json
+*.pth
 inference
+last_checkpoint
+log
 
 # weird thingy
 .nfs*
