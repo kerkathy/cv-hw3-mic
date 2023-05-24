@@ -8,7 +8,10 @@ Forked from [lhoyer/MIC](https://github.com/lhoyer/MIC).
 
 ### Environment
 Please follow the instruction in [INSTALL.md](MIC/det/INSTALL.md) to install and use this repo.
+
 For installation problems, please consult issues in [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark).
+
+There may be some problems regarding `coco-api` upon usage. Some `np.float` may need to be fixed into `float`.
 
 ### Inference
 ```
