@@ -38,8 +38,9 @@ def draw_map(metric='AP50', model_path='results'):
     print(f'epochs: {epochs}')
     print(f'{metric}: {vals}')
 
-    # Draw the map curve
-    plt.plot(epochs, vals)
+    # Draw the map curve with grid and point
+    plt.grid()
+    plt.plot(epochs, vals, 'o-')
     plt.xlabel('Epoch')
     plt.ylabel(f'{metric}')
     plt.title(f'{metric} of different epochs')

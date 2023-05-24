@@ -42,7 +42,7 @@ def main():
         output[img_name]['scores'].append(img['score'])
     with open(args.output, 'w') as f:
         json.dump(output, f, indent=4)
-        print('Write to {}. Image id\'s converted according to {}'.format(args.output, args.id2name))
+        print('Write to {}. \nImage id\'s converted according to {}'.format(args.output, args.id2name))
 
 if __name__ == '__main__':
     main()

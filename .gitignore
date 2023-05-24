@@ -5,6 +5,7 @@
 *.pt
 inference
 last_checkpoint
+*checkpoint*
 log
 results
 models
