@@ -24,15 +24,19 @@ pip install timm==0.6.11 kornia==0.5.8 einops==0.4.1
 export INSTALL_DIR=$PWD
 
 # install pycocotools
+# replace all `np.float` by `float`
 cd $INSTALL_DIR
 git clone https://github.com/cocodataset/cocoapi.git
 cd cocoapi/PythonAPI
+find . -type f -name "*.py" -print0 | xargs -0 sed -i 's/np.float/float/g'
 python setup.py build_ext install
 
 # install cityscapesScripts
+# replace all `np.float` by `float`
 cd $INSTALL_DIR
 git clone https://github.com/mcordts/cityscapesScripts.git
 cd cityscapesScripts/
+find . -type f -name "*.py" -print0 | xargs -0 sed -i 's/np.float/float/g'
 python setup.py build_ext install
 
 # install sa-da-faster
@@ -44,9 +48,6 @@ cd MIC/det
 # the files if you want and won't need to
 # re-build it
 python setup.py build develop
-
-
-unset INSTALL_DIR
 ```
 
 To run [convert_cityscapes_to_coco.py](tools/cityscapes/convert_cityscapes_to_coco.py) and [convert_foggy_cityscapes_to_coco.py](tools/cityscapes/convert_foggy_cityscapes_to_coco.py), you also need to run:
@@ -60,4 +61,9 @@ cd cityscapesScripts/
 python setup.py build_ext install
 
 pip install h5py==3.6.0 scipy==1.8.0
+```
+
+Finally, 
+```
+unset INSTALL_DIR
 ```
