@@ -14,6 +14,7 @@ For installation problems, please consult issues in [maskrcnn-benchmark](https:/
 There may be some problems regarding `coco-api` upon usage. Some `np.float` may need to be fixed into `float`.
 
 ### Inference
+Please move to the home directory before continuing.
 ```
 ./hw3_inference.sh /path/to/dataset /path/to/output.json <checkpoint_num>
 # e.g., ./hw3_inference.sh ../hw3/data/hw3_dataset output_test.json 1 
